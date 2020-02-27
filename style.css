@@ -4,7 +4,7 @@ body {
   display: flex;
   font-family: "Open-sans", arial;
   flex-direction: column;
-  font-size: 24px;
+  font-size: 18px;
   margin: 0;
   align-items:center;
   justify-content: center;
@@ -33,9 +33,15 @@ text-align: right;
 }
 
 h1 {
-  font-size: 4em;
+  font-size: 6em;
   margin: 0;
   color: rgb(251, 106, 74);
+}
+
+.right #year-avg {
+  white-space: nowrap;
+   margin: 8px;
+   margin-top: -20px;
 }
 
 h2 {

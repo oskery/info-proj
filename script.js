@@ -65,8 +65,11 @@ function getAvg() {
       tot++
     }
   }
+  var avg = Math.floor(sum / tot)
   var yearText = document.getElementById('selected-year')
-  yearText.style.color = colorScale(sum / tot)
+  yearText.style.color = colorScale(avg)
+  var yearText = document.getElementById('year-avg')
+  yearText.innerText = 'World average this year: ' + avg
 }
 
 // Draw the map

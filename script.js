@@ -72,6 +72,22 @@ function getAvg() {
   yearText.innerText = 'World average this year: ' + avg
 }
 
+// Tooltip
+var tip = d3
+  .tip()
+  .attr('class', 'd3-tip')
+  .offset([-5, 0])
+  .html(function(d) {
+    var val = data.get(d.properties.name) && data.get(d.properties.name)[year]
+    if (val) {
+      return d.properties.name + ': ' + val
+    } else {
+      return d.properties.name + ': No data.'
+    }
+  })
+
+svg.call(tip)
+
 // Draw the map
 function drawMap() {
   svg
@@ -83,6 +99,8 @@ function drawMap() {
     // draw each country
     .attr('d', d3.geoPath().projection(projection))
     .attr('class', 'country')
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide)
     // set the color of each country
     .attr('fill', function(d) {
       d.total =

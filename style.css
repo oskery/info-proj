@@ -74,12 +74,21 @@ main .map {
 }
 
 .country {
+  cursor:pointer;
   stroke: #fff;
   stroke-width: .4px;
 }
 
+.country:hover{
+  opacity: .6;
+}
 
-svg {
+.d3-tip {
+  line-height: 1;
+  padding: 12px;
+  background: rgba(43,43,43, 0.8);
+  color: #fff;
+  border-radius: 2px;
 }
 
 /* Slider */

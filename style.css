@@ -3,7 +3,7 @@
 body {
   display: flex;
   font-family: "Open-sans", arial;
-  flex-direction: row;
+  flex-direction: column;
   font-size: 18px;
   margin: 0;
   align-items:center;
@@ -59,7 +59,7 @@ h2 {
 
 main {
   position: relative;
-  margin-right: 15%;
+  /*margin-right: 15%;*/
 }
 
 #legend {

@@ -16,13 +16,17 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  margin: 20px -50px 20px 0;
+  margin: 20px 0;
   align-items: center;
 }
 
 /* All direct children of header has no vertical margin */
 header > * {
   margin: 0 .5em;
+}
+
+.right {
+width: 30%;
 }
 
 h1 {

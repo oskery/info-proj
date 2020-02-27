@@ -14,33 +14,25 @@ var slider = document.getElementById('slider'),
 slider.oninput = function() {
   selectedYearDiv.innerHTML = this.value
   year = this.value
-  reFill()
+  reFillMap()
 }
 
 // The svg
-var svg = d3.select('svg'),
-  width = +svg.attr('width'),
-  height = +svg.attr('height')
+var svg = d3.select('svg')
 
 // Map and projection
 var path = d3.geoPath()
 var projection = d3.geoMercator().scale(90)
 
-/*
-  .center([0, 20])
-  .translate([width / 2, height / 2])
-*/
-
-// Data and color scale
+// Data, geoJSON and color scale
 var data = d3.map()
+var topo
 var colorScale = d3
   .scaleThreshold()
   .domain([10, 20, 30, 40, 50, 60, 70, 80])
   .range(d3.schemeReds[9])
 
-var topo = null
-// Load external data and boot
-
+// Load geoJSON and CSV
 Promise.all([
   d3
     .json(
@@ -54,10 +46,10 @@ Promise.all([
       data.set(x.country, x)
     })
   }),
-]).then(ready)
+]).then(drawMap)
 
-function ready() {
-  // Draw the map
+// Draw the map
+function drawMap() {
   svg
     .append('g')
     .selectAll('path')
@@ -74,8 +66,8 @@ function ready() {
     })
 }
 
-function reFill() {
-  // Draw after changing year
+// Draw on map
+function reFillMap() {
   svg.selectAll('path').attr('fill', function(d) {
     d.total =
       (data.get(d.properties.name) && data.get(d.properties.name)[year]) || 0

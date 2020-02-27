@@ -88,6 +88,16 @@ var tip = d3
 
 svg.call(tip)
 
+// Zoom
+var zoom = d3.zoom().on('zoom', function() {
+  svg.attr('transform', d3.event.transform)
+})
+svg.call(zoom)
+
+function resetZoom() {
+  zoom.transform(svg, d3.zoomIdentity)
+}
+
 // Draw the map
 function drawMap() {
   svg

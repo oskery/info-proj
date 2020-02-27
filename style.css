@@ -41,6 +41,23 @@ h2 {
 }
 
 main {
+  position: relative;
+}
+
+#legend {
+  display: flex;
+  position: absolute;
+  left: -100px;
+  bottom: 150px;
+  width: 300px;
+}
+
+#legend > div {
+  flex: 1;
+  height: 0px;
+  margin: 0 1px;
+  padding-top: 12px;
+  font-size: 10px;
 }
 
 /* Map */

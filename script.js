@@ -1,16 +1,21 @@
+// Settings:
 var minYear = 1800
 var maxYear = 2020
+var legendValues = [10, 20, 30, 40, 50, 60, 70, 80]
+var minVal = 24 // Not used atm
+var maxVal = 64 // Not used atm
+
+// Creates yearspan and retrieves active year
 var yearSpan = [...Array(maxYear - minYear).keys()]
   .map(x => x + minYear)
   .filter(x => x % 10 === 0)
 var year = document.getElementById('selected-year').innerHTML
-var minVal = 24
-var maxVal = 64
 
-// When user changes year with slider
+// Retrieve slider div
 var slider = document.getElementById('slider'),
   selectedYearDiv = document.getElementById('selected-year')
 
+// Triggers if user uses slider
 slider.oninput = function() {
   selectedYearDiv.innerHTML = this.value
   year = this.value
@@ -29,8 +34,8 @@ var data = d3.map()
 var topo
 var colorScale = d3
   .scaleThreshold()
-  .domain([10, 20, 30, 40, 50, 60, 70, 80])
-  .range(d3.schemeReds[9])
+  .domain(legendValues)
+  .range(d3.schemeReds[legendValues.length])
 
 // Load geoJSON and CSV
 Promise.all([
@@ -64,6 +69,18 @@ function drawMap() {
         (data.get(d.properties.name) && data.get(d.properties.name)[year]) || 0
       return colorScale(d.total)
     })
+}
+
+// Draw legend
+var legend = document.getElementById('legend')
+var cols = d3.schemeReds[legend.length]
+
+for (var i = 0; i < legendValues.length; i++) {
+  var element = document.createElement('div')
+  element.className = 'l-' + i
+  element.style.background = colorScale(legendValues[i])
+  element.innerText = legendValues[i]
+  legend.appendChild(element)
 }
 
 // Draw on map

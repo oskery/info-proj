@@ -95,7 +95,10 @@ var zoom = d3.zoom().on('zoom', function() {
 svg.call(zoom)
 
 function resetZoom() {
-  zoom.transform(svg, d3.zoomIdentity)
+  svg
+    .transition()
+    .duration(750)
+    .call(zoom.transform, d3.zoomIdentity)
 }
 
 // Draw the map

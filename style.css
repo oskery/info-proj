@@ -26,11 +26,13 @@ header > * {
 }
 
 .right {
-width: 30%;
+width: 20%;
+text-align: right;
 }
 
 h1 {
   font-size: 4em;
+  margin: 0;
 }
 
 h2 {

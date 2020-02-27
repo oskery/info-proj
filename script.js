@@ -10,6 +10,7 @@ var yearSpan = [...Array(maxYear - minYear).keys()]
   .map(x => x + minYear)
   .filter(x => x % 10 === 0)
 var year = document.getElementById('selected-year').innerHTML
+var yearAvg = Array(maxYear - minYear)
 
 // Retrieve slider div
 var slider = document.getElementById('slider'),
@@ -53,6 +54,21 @@ Promise.all([
   }),
 ]).then(drawMap)
 
+// Get average GINI for current year
+function getAvg() {
+  var sum = 0
+  var tot = 0
+  for (var i in data) {
+    var d = data[i][year]
+    if (d) {
+      sum += +d
+      tot++
+    }
+  }
+  var yearText = document.getElementById('selected-year')
+  yearText.style.color = colorScale(sum / tot)
+}
+
 // Draw the map
 function drawMap() {
   svg
@@ -70,6 +86,7 @@ function drawMap() {
         (data.get(d.properties.name) && data.get(d.properties.name)[year]) || 0
       return colorScale(d.total)
     })
+  getAvg()
 }
 
 // Draw legend
@@ -91,4 +108,5 @@ function reFillMap() {
       (data.get(d.properties.name) && data.get(d.properties.name)[year]) || 0
     return colorScale(d.total)
   })
+  getAvg()
 }

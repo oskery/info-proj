@@ -49,7 +49,7 @@ Promise.all([
     .then(data => {
       topo = data
     }),
-  d3.csv('/csv/gini.csv').then(d => {
+  d3.csv('csv/gini.csv').then(d => {
     d.map(x => {
       data.set(x.country, x)
     })

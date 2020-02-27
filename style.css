@@ -65,6 +65,11 @@ main .map {
   width: 60vw;
 }
 
+.country {
+  stroke: #fff;
+  stroke-width: .4px;
+}
+
 
 svg {
 }

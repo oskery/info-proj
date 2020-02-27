@@ -63,6 +63,7 @@ function drawMap() {
     .append('path')
     // draw each country
     .attr('d', d3.geoPath().projection(projection))
+    .attr('class', 'country')
     // set the color of each country
     .attr('fill', function(d) {
       d.total =

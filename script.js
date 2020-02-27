@@ -1,7 +1,7 @@
 // Settings:
 var minYear = 1800
 var maxYear = 2020
-var legendValues = [10, 20, 30, 40, 50, 60, 70, 80]
+var legendValues = [0, 30, 40, 50, 60]
 var minVal = 24 // Not used atm
 var maxVal = 64 // Not used atm
 
@@ -36,7 +36,7 @@ var topo
 var colorScale = d3
   .scaleThreshold()
   .domain(legendValues)
-  .range(d3.schemeReds[legendValues.length])
+  .range(d3.schemeReds[legendValues.length + 1]) // why + 1?? :S
 
 // Load geoJSON and CSV
 Promise.all([
@@ -119,7 +119,11 @@ for (var i = 0; i < legendValues.length; i++) {
   var element = document.createElement('div')
   element.className = 'l-' + i
   element.style.background = colorScale(legendValues[i])
-  element.innerText = legendValues[i]
+  var text
+  if (i === 0) text = '<' + legendValues[i + 1]
+  else if (i === legendValues.length - 1) text = '>' + legendValues[i - 1]
+  else text = legendValues[i] + '-' + legendValues[i + 1]
+  element.innerText = text
   legend.appendChild(element)
 }
 

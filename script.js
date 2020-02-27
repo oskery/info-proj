@@ -24,7 +24,9 @@ slider.oninput = function() {
 }
 
 // The svg
-var svg = d3.select('svg')
+var svg = d3.select('svg'),
+  width = +svg.attr('width'),
+  height = +svg.attr('height')
 
 // Map and projection
 var path = d3.geoPath()
@@ -92,6 +94,7 @@ svg.call(tip)
 var zoom = d3.zoom().on('zoom', function() {
   svg.attr('transform', d3.event.transform)
 })
+
 svg.call(zoom)
 
 function resetZoom() {
@@ -114,6 +117,7 @@ function drawMap() {
     .attr('class', 'country')
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide)
+    .on('click', clickedCountry)
     // set the color of each country
     .attr('fill', function(d) {
       d.total =
@@ -149,4 +153,21 @@ function reFillMap() {
     return colorScale(d.total)
   })
   getAvg()
+}
+
+function clickedCountry(d) {
+  var coor = d.geometry.coordinates[0][0]
+  if (coor.length > 2) coor = coor[0]
+  console.log(coor)
+  svg
+    .transition()
+    .duration(750)
+    .call(
+      zoom.transform,
+      d3.zoomIdentity
+        .translate(width / 2, height / 2)
+        .scale(10)
+        .translate(-coor[0] + 100, -coor[1] - 100),
+      d3.mouse(svg.node())
+    )
 }

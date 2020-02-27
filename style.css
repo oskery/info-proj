@@ -26,7 +26,8 @@ header > * {
 }
 
 .right {
-width: 20%;
+  max-width: 15%; /* fixes dynamic slider width smaller devices */
+  width: 20%; /* -||- larger devices */
 text-align: right;
 }
 

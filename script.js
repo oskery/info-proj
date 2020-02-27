@@ -84,6 +84,7 @@ function drawMap() {
     .attr('fill', function(d) {
       d.total =
         (data.get(d.properties.name) && data.get(d.properties.name)[year]) || 0
+      if (d.total === 0) return '#bbb'
       return colorScale(d.total)
     })
   getAvg()
@@ -106,6 +107,7 @@ function reFillMap() {
   svg.selectAll('path').attr('fill', function(d) {
     d.total =
       (data.get(d.properties.name) && data.get(d.properties.name)[year]) || 0
+    if (d.total === 0) return 'black'
     return colorScale(d.total)
   })
   getAvg()

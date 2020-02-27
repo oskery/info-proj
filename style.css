@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Quattrocento');
+
+body {
+  display: flex;
+  font-family: Quattrocento, arial;
+  flex-direction: column;
+  font-size: 24px;
+  margin: 0;
+  align-items:center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px -50px 20px 0;
+  align-items: center;
+}
+
+/* All direct children of header has no vertical margin */
+header > * {
+  margin: 0 .5em;
+}
+
+h1 {
+  font-size: 4em;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+main {
+}
+
+/* Map */
+main .map {
+  width: 60vw;
+}
+
+
+svg {
+}
+
+/* Slider */
+#slider {
+  margin: 50px 0;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 50px;
+  background: #eeeeee;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .5s;
+}
+
+#slider:hover {
+  opacity: 1;
+}
+
+#slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 100px;
+  background: rgba(203, 24, 29);
+  cursor: pointer;
+}
+
+#slider::-moz-range-thumb {
+  width: 25px;
+  height: 100px;
+  background:  rgba(203, 24, 29);
+  cursor: pointer
+}

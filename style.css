@@ -3,18 +3,27 @@
 body {
   display: flex;
   font-family: "Open-sans", arial;
-  flex-direction: column;
+  flex-direction: row;
   font-size: 18px;
   margin: 0;
   align-items:center;
-  justify-content: center;
+  justify-content: space-between;
   height: 100vh;
   overflow: hidden;
   text-align: center;
 }
 
+aside {
+  height: 100vh;
+  align-self: flex-start;
+  justify-self: flex-start;
+  padding: 1em;
+  word-wrap: break-word;
+}
+header, aside {
+  font-family: Quattrocento;}
+
 header {
-  font-family: Quattrocento;
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
@@ -50,6 +59,7 @@ h2 {
 
 main {
   position: relative;
+  margin-right: 15%;
 }
 
 #legend {

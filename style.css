@@ -2,7 +2,7 @@
 
 body {
   display: flex;
-  font-family: Quattrocento, arial;
+  font-family: "Open-sans", arial;
   flex-direction: column;
   font-size: 24px;
   margin: 0;
@@ -14,6 +14,7 @@ body {
 }
 
 header {
+  font-family: Quattrocento;
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
@@ -47,8 +48,8 @@ main {
 #legend {
   display: flex;
   position: absolute;
-  left: -100px;
-  bottom: 150px;
+  top:220px;
+  right: -80px;
   width: 300px;
 }
 
@@ -57,7 +58,7 @@ main {
   height: 0px;
   margin: 0 1px;
   padding-top: 12px;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 /* Map */

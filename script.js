@@ -26,8 +26,10 @@ slider.oninput = function() {
   console.log(selectedCountry)
   if (selectedCountry) {
     activeCountry(selectedCountry)
+    updateSidebar()
   } else {
     reFillMap()
+    initSidebar()
   }
 }
 
@@ -160,7 +162,7 @@ function drawMap() {
       return colorScale(d.total)
     })
   getAvg()
-  updateSidebar()
+  initSidebar()
 }
 
 // Draw legend
@@ -213,14 +215,18 @@ function clickedCountry(d) {
   if (copy == d.properties.name) {
     reFillMap()
     selectedCountry = null
+    initSidebar()
   } else {
     activeCountry(d.properties.name)
+    updateSidebar()
   }
+}
 
+function updateSidebar() {
   var pop =
     (population.get(selectedCountry) &&
       population.get(selectedCountry)[year]) ||
-    'N/A'
+    0
   var numPoor =
     (nrPoor.get(selectedCountry) && nrPoor.get(selectedCountry)[year]) || 'N/A'
   console.log(nrPoor.get(selectedCountry))
@@ -228,7 +234,13 @@ function clickedCountry(d) {
   var textBlock = document.getElementById('country-text')
   textBlock.innerHTML = ''
   var textPop = document.createElement('p')
-  textPop.innerText = 'Population: ' + pop
+  textPop.innerText =
+    'Population: ' +
+    (pop == 0
+      ? 'N/A'
+      : pop / 1000000 > 1000
+      ? pop / 1000000000 + ' billion'
+      : pop / 1000000 + ' million')
   var textNrPoor = document.createElement('p')
   textNrPoor.innerText = 'Number of poor: ' + numPoor
   var textAvgIncome
@@ -236,8 +248,8 @@ function clickedCountry(d) {
   textBlock.appendChild(textPop)
   textBlock.appendChild(textNrPoor)
 
-  var richMoney = rich.get(d.properties.name)[year] || 0
-  var poorMoney = poor.get(d.properties.name)[year] || 0
+  var richMoney = rich.get(selectedCountry)[year] || 0
+  var poorMoney = poor.get(selectedCountry)[year] || 0
 
   bb.generate({
     data: {
@@ -264,7 +276,9 @@ function clickedCountry(d) {
   })
 }
 
-function updateSidebar() {
+function initSidebar() {
   var parent = document.getElementById('country-text')
   parent.innerText = startPageText
+  var pie = document.getElementById('pie-chart')
+  pie.innerHTML = ''
 }

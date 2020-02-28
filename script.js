@@ -11,6 +11,7 @@ var yearSpan = [...Array(maxYear - minYear).keys()]
   .filter(x => x % 10 === 0)
 var year = document.getElementById('selected-year').innerHTML
 var yearAvg = Array(maxYear - minYear)
+var selectedCountry
 
 // Retrieve slider div
 var slider = document.getElementById('slider'),
@@ -156,9 +157,21 @@ function reFillMap() {
 }
 
 function clickedCountry(d) {
+  selectedCountry = d.properties.name
+  var exist = document.getElementById('selected-country')
+  if (exist) {
+    exist.innerText = selectedCountry
+  } else {
+    var element = document.createElement('h2')
+    element.setAttribute('id', 'selected-country')
+    element.innerText = selectedCountry
+  }
+
+  var parent = document.getElementById('country-data')
+  parent.appendChild(element)
+
   var coor = d.geometry.coordinates[0][0]
   if (coor.length > 2) coor = coor[0]
-  console.log(coor)
   svg
     .transition()
     .duration(750)
@@ -166,7 +179,7 @@ function clickedCountry(d) {
       zoom.transform,
       d3.zoomIdentity
         .translate(width / 2, height / 2)
-        .scale(10)
+        .scale(1)
         .translate(-coor[0] + 100, -coor[1] - 100),
       d3.mouse(svg.node())
     )

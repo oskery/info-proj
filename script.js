@@ -23,7 +23,12 @@ var slider = document.getElementById('slider'),
 slider.oninput = function() {
   selectedYearDiv.innerHTML = this.value
   year = this.value
-  reFillMap()
+  console.log(selectedCountry)
+  if (selectedCountry) {
+    activeCountry(selectedCountry)
+  } else {
+    reFillMap()
+  }
 }
 
 // The svg
@@ -39,6 +44,10 @@ var projection = d3.geoMercator().scale(90)
 var data = d3.map()
 var rich = d3.map()
 var poor = d3.map()
+var population = d3.map()
+var nrPoor = d3.map()
+var avgIncome = d3.map()
+
 var topo
 var colorScale = d3
   .scaleThreshold()
@@ -67,6 +76,16 @@ Promise.all([
   d3.csv('csv/income_share_of_richest_10percent.csv').then(d => {
     d.map(x => {
       rich.set(x.country, x)
+    })
+  }),
+  d3.csv('csv/number_of_people_in_poverty.csv').then(d => {
+    d.map(x => {
+      nrPoor.set(x.country, x)
+    })
+  }),
+  d3.csv('csv/population_total.csv').then(d => {
+    d.map(x => {
+      population.set(x.country, x)
     })
   }),
 ]).then(drawMap)
@@ -141,7 +160,7 @@ function drawMap() {
       return colorScale(d.total)
     })
   getAvg()
-  //updateSidebar()
+  updateSidebar()
 }
 
 // Draw legend
@@ -171,27 +190,51 @@ function reFillMap() {
   getAvg()
 }
 
+// Change color on active country
+function activeCountry(selectedCountry) {
+  svg.selectAll('path').attr('fill', function(d) {
+    d.total =
+      (data.get(d.properties.name) && data.get(d.properties.name)[year]) || 0
+    if (d.total === 0)
+      return `#bbbbbb${selectedCountry == d.properties.name ? '' : '30'}`
+    return `${colorScale(
+      d.total
+    )}${selectedCountry == d.properties.name ? '' : '30'}`
+  })
+}
+
 function clickedCountry(d) {
+  let copy = selectedCountry
+
   selectedCountry = d.properties.name
   var element = document.getElementById('country-title')
   element.innerText = selectedCountry
 
-  var parent = document.getElementById('country-data')
-  parent.appendChild(element)
+  if (copy == d.properties.name) {
+    reFillMap()
+    selectedCountry = null
+  } else {
+    activeCountry(d.properties.name)
+  }
 
-  var coor = d.geometry.coordinates[0][0]
-  if (coor.length > 2) coor = coor[0]
-  svg
-    .transition()
-    .duration(750)
-    .call(
-      zoom.transform,
-      d3.zoomIdentity
-        .translate(width / 2, height / 2)
-        .scale(1)
-        .translate(-coor[0] + 100, -coor[1] - 100),
-      d3.mouse(svg.node())
-    )
+  var pop =
+    (population.get(selectedCountry) &&
+      population.get(selectedCountry)[year]) ||
+    'N/A'
+  var numPoor =
+    (nrPoor.get(selectedCountry) && nrPoor.get(selectedCountry)[year]) || 'N/A'
+  console.log(nrPoor.get(selectedCountry))
+
+  var textBlock = document.getElementById('country-text')
+  textBlock.innerHTML = ''
+  var textPop = document.createElement('p')
+  textPop.innerText = 'Population: ' + pop
+  var textNrPoor = document.createElement('p')
+  textNrPoor.innerText = 'Number of poor: ' + numPoor
+  var textAvgIncome
+
+  textBlock.appendChild(textPop)
+  textBlock.appendChild(textNrPoor)
 
   var richMoney = rich.get(d.properties.name)[year] || 0
   var poorMoney = poor.get(d.properties.name)[year] || 0
@@ -204,7 +247,6 @@ function clickedCountry(d) {
         ['The rest', 100 - richMoney - poorMoney],
       ],
       color: function(color, d) {
-        console.log(d)
         return { Rich: '#000', Poor: '#f00', 'The rest': '#fff' }[d]
       },
       type: 'pie',
@@ -217,12 +259,12 @@ function clickedCountry(d) {
       onout: function(d, i) {
         console.log('onout', d, i)
       },
-      bindto: '#pie-chart',
     },
+    bindto: '#pie-chart',
   })
 }
 
 function updateSidebar() {
-  var parent = document.getElementById('country-data')
+  var parent = document.getElementById('country-text')
   parent.innerText = startPageText
 }

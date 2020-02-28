@@ -199,12 +199,10 @@ function clickedCountry(d) {
       d3.mouse(svg.node())
     )
 
-  console.log()
-
   var richMoney = rich.get(d.properties.name)[year] || 0
   var poorMoney = poor.get(d.properties.name)[year] || 0
 
-  bb.generate({
+  var chart = bb.generate({
     data: {
       columns: [
         ['Rich', richMoney],
@@ -226,8 +224,10 @@ function clickedCountry(d) {
         console.log('onout', d, i)
       },
     },
-    bindto: '#pieChart',
   })
+  var parent = document.getElementById('country-data')
+  parent.appendChild(chart.element)
+  console.log(chart)
 }
 
 function updateSidebar() {

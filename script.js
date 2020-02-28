@@ -37,6 +37,8 @@ var projection = d3.geoMercator().scale(90)
 
 // Data, geoJSON and color scale
 var data = d3.map()
+var rich = d3.map()
+var poor = d3.map()
 var topo
 var colorScale = d3
   .scaleThreshold()
@@ -55,6 +57,16 @@ Promise.all([
   d3.csv('csv/gini.csv').then(d => {
     d.map(x => {
       data.set(x.country, x)
+    })
+  }),
+  d3.csv('csv/income_share_of_poorest_10percent.csv').then(d => {
+    d.map(x => {
+      poor.set(x.country, x)
+    })
+  }),
+  d3.csv('csv/income_share_of_richest_10percent.csv').then(d => {
+    d.map(x => {
+      rich.set(x.country, x)
     })
   }),
 ]).then(drawMap)
@@ -129,7 +141,7 @@ function drawMap() {
       return colorScale(d.total)
     })
   getAvg()
-  updateSidebar()
+  //updateSidebar()
 }
 
 // Draw legend
@@ -161,11 +173,11 @@ function reFillMap() {
 
 function clickedCountry(d) {
   selectedCountry = d.properties.name
-  var exist = document.getElementById('selected-country')
-  if (exist) {
-    exist.innerText = selectedCountry
+  var element = document.getElementById('selected-country')
+  if (element) {
+    element.innerText = selectedCountry
   } else {
-    var element = document.createElement('h2')
+    element = document.createElement('h2')
     element.setAttribute('id', 'selected-country')
     element.innerText = selectedCountry
   }
@@ -186,6 +198,36 @@ function clickedCountry(d) {
         .translate(-coor[0] + 100, -coor[1] - 100),
       d3.mouse(svg.node())
     )
+
+  console.log()
+
+  var richMoney = rich.get(d.properties.name)[year] || 0
+  var poorMoney = poor.get(d.properties.name)[year] || 0
+
+  bb.generate({
+    data: {
+      columns: [
+        ['Rich', richMoney],
+        ['Poor', poorMoney],
+        ['The rest', 100 - richMoney - poorMoney],
+      ],
+      color: function(color, d) {
+        console.log(d)
+        return { Rich: '#000', Poor: '#f00', 'The rest': '#fff' }[d]
+      },
+      type: 'pie',
+      onclick: function(d, i) {
+        console.log('onclick', d, i)
+      },
+      onover: function(d, i) {
+        console.log('onover', d, i)
+      },
+      onout: function(d, i) {
+        console.log('onout', d, i)
+      },
+    },
+    bindto: '#pieChart',
+  })
 }
 
 function updateSidebar() {

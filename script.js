@@ -173,14 +173,8 @@ function reFillMap() {
 
 function clickedCountry(d) {
   selectedCountry = d.properties.name
-  var element = document.getElementById('selected-country')
-  if (element) {
-    element.innerText = selectedCountry
-  } else {
-    element = document.createElement('h2')
-    element.setAttribute('id', 'selected-country')
-    element.innerText = selectedCountry
-  }
+  var element = document.getElementById('country-title')
+  element.innerText = selectedCountry
 
   var parent = document.getElementById('country-data')
   parent.appendChild(element)
@@ -202,7 +196,7 @@ function clickedCountry(d) {
   var richMoney = rich.get(d.properties.name)[year] || 0
   var poorMoney = poor.get(d.properties.name)[year] || 0
 
-  var chart = bb.generate({
+  bb.generate({
     data: {
       columns: [
         ['Rich', richMoney],
@@ -223,11 +217,9 @@ function clickedCountry(d) {
       onout: function(d, i) {
         console.log('onout', d, i)
       },
+      bindto: '#pie-chart',
     },
   })
-  var parent = document.getElementById('country-data')
-  parent.appendChild(chart.element)
-  console.log(chart)
 }
 
 function updateSidebar() {

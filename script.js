@@ -215,7 +215,7 @@ function updateSidebar() {
       population.get(selectedCountry)[year]) ||
     0
   var numPoor =
-    (nrPoor.get(selectedCountry) && nrPoor.get(selectedCountry)[year]) || 'N/A'
+    (nrPoor.get(selectedCountry) && nrPoor.get(selectedCountry)[year]) || 0
   console.log(nrPoor.get(selectedCountry))
 
   var textBlock = document.getElementById('country-text')
@@ -229,7 +229,8 @@ function updateSidebar() {
       ? pop / 1000000000 + ' billion'
       : pop / 1000000 + ' million')
   var textNrPoor = document.createElement('p')
-  textNrPoor.innerText = 'Number of poor: ' + numPoor
+  textNrPoor.innerText =
+    'Number of poor: ' + (numPoor === 0 ? 'N/A' : numPoor + ' million')
   var textAvgIncome
 
   textBlock.appendChild(textPop)

@@ -12,30 +12,6 @@ body {
   padding-top: 40px;
 }
 
-aside {
-  text-align: left;
-  flex: 1;
-  align-self: flex-start;
-  justify-self: flex-start;
-  padding: 20px;
-  word-wrap: break-word;
-  margin-right: 20px;
-  max-width: 420px;
-}
-
-#country-data {
-  margin: 30px 0;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  border-radius: 20px;
-}
-
-#country-data h2 {
-  margin-bottom: 20px;
-  color: rgb(251, 106, 74);
-}
-
-
 hgroup > * {
   margin: 0;
 }
@@ -48,7 +24,6 @@ h2 {
   font-size: 40px;
   margin: 0;
   white-space: nowrap;
-
 }
 h4 {
   font-size: 2em;
@@ -58,13 +33,33 @@ h5 {
   margin-bottom: -7px;
 }
 
-
-
+aside {
+  text-align: left;
+  flex: 1;
+  align-self: flex-start;
+  justify-self: flex-start;
+  padding: 20px;
+  word-wrap: break-word;
+  margin-right: 20px;
+  max-width: 420px;
+}
 aside header {
   padding-top: 22px;
   background: white;
 }
+#country-data {
+  margin: 30px 0;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+}
 
+#country-data h2 {
+  margin-bottom: 20px;
+  color: rgb(251, 106, 74);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 header,
 aside {
@@ -88,7 +83,6 @@ header > * {
   width: 20%; /* -||- larger devices */
   text-align: right;
 }
-
 
 .right #year-avg {
   white-space: nowrap;

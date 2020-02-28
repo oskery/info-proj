@@ -4,7 +4,7 @@ body {
   display: flex;
   font-family: "Open-sans", arial;
   flex-direction: row;
-  font-size: 18px;
+  font-size: 24px;
   margin: 0;
   align-items:center;
   justify-content: space-between;
@@ -23,6 +23,7 @@ aside {
   padding: 20px;
   word-wrap: break-word;
   margin-right: 20px;
+  max-width: 20%;
 }
 
 #country-data {
@@ -90,13 +91,14 @@ h1 {
 
 main {
   position: relative;
-  margin-right: 10%;
+  margin-right: 15%;
+  margin-top: 5%;
 }
 
 #legend {
   display: flex;
   position: absolute;
-  top:180px;
+  top:250px;
   right: -120px;
   width: 300px;
 }

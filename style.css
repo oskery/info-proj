@@ -9,11 +9,12 @@ body {
   height: 100vh;
   overflow: hidden;
   text-align: center;
+  padding-top: 40px;
 }
 
 aside {
   text-align: left;
-  height: 100vh;
+  flex: 1;
   align-self: flex-start;
   justify-self: flex-start;
   padding: 20px;
@@ -23,8 +24,7 @@ aside {
 }
 
 #country-data {
-  margin: 40px 0;
-
+  margin: 30px 0;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
   padding: 30px;
   border-radius: 20px;
@@ -74,7 +74,7 @@ aside {
 header {
   display: flex;
   justify-content: space-between;
-  margin: 0 0 20px;
+  margin: 0 0 10px;
   align-items: center;
 }
 
@@ -103,7 +103,7 @@ main {
 #legend {
   display: flex;
   position: absolute;
-  top: 250px;
+  top: 200px;
   right: -120px;
   width: 300px;
 }

@@ -6,8 +6,6 @@ body {
   flex-direction: row;
   font-size: 20px;
   margin: 0;
-  align-items: center;
-  justify-content: space-between;
   height: 100vh;
   overflow: hidden;
   text-align: center;
@@ -25,33 +23,48 @@ aside {
 }
 
 #country-data {
+  margin: 40px 0;
+
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
   padding: 30px;
   border-radius: 20px;
 }
 
 #country-data h2 {
+  margin-bottom: 20px;
   color: rgb(251, 106, 74);
 }
 
-h4 {
-  font-size: 2em;
-}
-h5 {
-  font-size: 1.3em;
-}
-
-h2 {
-  font-size: 40px;
-}
-
-aside header {
-  background: white;
-}
 
 hgroup > * {
   margin: 0;
 }
+h1 {
+  font-size: 6em;
+  margin: 0;
+  color: rgb(251, 106, 74);
+}
+h2 {
+  font-size: 40px;
+  margin: 0;
+  white-space: nowrap;
+
+}
+h4 {
+  font-size: 2em;
+}
+h5 {
+  font-size: 1.4em;
+  margin-bottom: -7px;
+}
+
+
+
+aside header {
+  padding-top: 22px;
+  background: white;
+}
+
 
 header,
 aside {
@@ -61,7 +74,7 @@ aside {
 header {
   display: flex;
   justify-content: space-between;
-  margin: 20px 0;
+  margin: 0 0 20px;
   align-items: center;
 }
 
@@ -76,11 +89,6 @@ header > * {
   text-align: right;
 }
 
-h1 {
-  font-size: 6em;
-  margin: 0;
-  color: rgb(251, 106, 74);
-}
 
 .right #year-avg {
   white-space: nowrap;
@@ -90,8 +98,6 @@ h1 {
 
 main {
   position: relative;
-  margin-right: 15%;
-  margin-top: 5%;
 }
 
 #legend {

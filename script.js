@@ -4,6 +4,8 @@ var maxYear = 2020
 var legendValues = [0, 30, 40, 50, 60]
 var minVal = 24 // Not used atm
 var maxVal = 64 // Not used atm
+var startPageText =
+  "This visualization present how income inequality has changed over time, and how the levels of inequality in different countries can vary significantly. \n\n The inequality is measured through the Gini coefficient (shown). It shows how far a country's wealth or income distribution deviates from a totally equal distribution. The Gini coefficient measures the inequality among for example, levels of income. The higher the value the higher the inequality."
 
 // Creates yearspan and retrieves active year
 var yearSpan = [...Array(maxYear - minYear).keys()]
@@ -127,6 +129,7 @@ function drawMap() {
       return colorScale(d.total)
     })
   getAvg()
+  updateSidebar()
 }
 
 // Draw legend
@@ -183,4 +186,9 @@ function clickedCountry(d) {
         .translate(-coor[0] + 100, -coor[1] - 100),
       d3.mouse(svg.node())
     )
+}
+
+function updateSidebar() {
+  var parent = document.getElementById('country-data')
+  parent.innerText = startPageText
 }

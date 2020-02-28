@@ -2,11 +2,11 @@
 
 body {
   display: flex;
-  font-family: "Open-sans", arial;
+  font-family: 'Open-sans', arial;
   flex-direction: row;
-  font-size: 24px;
+  font-size: 20px;
   margin: 0;
-  align-items:center;
+  align-items: center;
   justify-content: space-between;
   height: 100vh;
   overflow: hidden;
@@ -14,7 +14,7 @@ body {
 }
 
 aside {
-  box-shadow:3px 3px 8px rgba(0,0,0,0.1);
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
 
   text-align: left;
   height: 100vh;
@@ -23,7 +23,7 @@ aside {
   padding: 20px;
   word-wrap: break-word;
   margin-right: 20px;
-  max-width: 20%;
+  max-width: 25%;
 }
 
 #country-data {
@@ -34,7 +34,7 @@ aside {
 }
 
 h4 {
-  font-size:2em;
+  font-size: 2em;
 }
 h5 {
   font-size: 1.3em;
@@ -53,11 +53,13 @@ hgroup > * {
 }
 
 aside section {
-height: 100%
+  height: 100%;
 }
 
-header, aside {
-  font-family: Quattrocento;}
+header,
+aside {
+  font-family: Quattrocento;
+}
 
 header {
   display: flex;
@@ -68,13 +70,13 @@ header {
 
 /* All direct children of header has no vertical margin */
 header > * {
-  margin: 0 .5em;
+  margin: 0 0.5em;
 }
 
 .right {
   max-width: 15%; /* fixes dynamic slider width smaller devices */
   width: 20%; /* -||- larger devices */
-text-align: right;
+  text-align: right;
 }
 
 h1 {
@@ -85,8 +87,8 @@ h1 {
 
 .right #year-avg {
   white-space: nowrap;
-   margin: 8px;
-   margin-top: -20px;
+  margin: 8px;
+  margin-top: -20px;
 }
 
 main {
@@ -98,7 +100,7 @@ main {
 #legend {
   display: flex;
   position: absolute;
-  top:250px;
+  top: 250px;
   right: -120px;
   width: 300px;
 }
@@ -120,7 +122,7 @@ main .map {
 .map button {
   cursor: pointer;
   background-color: black;
-  opacity: .7;
+  opacity: 0.7;
   padding: 10px;
   font-size: 20px;
   color: white;
@@ -131,27 +133,27 @@ main .map {
 }
 
 .map button:hover {
-  opacity: .9;
+  opacity: 0.9;
 }
 
 .country {
-  cursor:pointer;
+  cursor: pointer;
   stroke: #fff;
-  stroke-width: .4px;
+  stroke-width: 0.4px;
 }
 
 .map {
-  overflow:hidden;
+  overflow: hidden;
 }
 
-.country:hover{
-  opacity: .6;
+.country:hover {
+  opacity: 0.6;
 }
 
 .d3-tip {
   line-height: 1;
   padding: 12px;
-  background: rgba(43,43,43, 0.8);
+  background: rgba(43, 43, 43, 0.8);
   color: #fff;
   border-radius: 2px;
 }
@@ -165,8 +167,8 @@ main .map {
   background: #eeeeee;
   outline: none;
   opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .5s;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.5s;
 }
 
 #slider:hover {
@@ -185,6 +187,6 @@ main .map {
 #slider::-moz-range-thumb {
   width: 25px;
   height: 100px;
-  background:  rgba(203, 24, 29);
-  cursor: pointer
+  background: rgba(203, 24, 29);
+  cursor: pointer;
 }

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Quattrocento');
 
 body {
+  user-select:none;
   display: flex;
   font-family: 'Open-sans', arial;
   flex-direction: row;
@@ -47,18 +48,22 @@ aside header {
   padding-top: 22px;
   background: white;
 }
-#country-data {
+aside > section{
   margin: 30px 0;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
   padding: 30px;
   border-radius: 20px;
 }
 
-#country-data h2 {
+aside > section > h2 {
   margin-bottom: 20px;
   color: rgb(251, 106, 74);
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.bb-legend-item-The-rest {
+  visibility: hidden !important;
 }
 
 header,

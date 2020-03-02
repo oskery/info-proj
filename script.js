@@ -273,10 +273,16 @@ function updateSidebar() {
 }
 
 function initSidebar() {
-  var cTitle = document.getElementById('country-title')
+  var cTitle = document.getElementById('info-title')
   cTitle.innerText = title
-  var parent = document.getElementById('country-text')
+  var parent = document.getElementById('info-text')
   parent.innerText = startPageText
+
+  cTitle = document.getElementById('country-title')
+  cTitle.innerText = 'Country details'
+  parent = document.getElementById('country-text')
+  parent.innerText =
+    'Click on a country on the map to get specific information.'
   var pie = document.getElementById('pie-chart')
   pie.innerHTML = ''
 }

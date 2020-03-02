@@ -11,6 +11,7 @@ body {
   overflow: hidden;
   text-align: center;
   padding-top: 40px;
+  color: rgb(32, 32, 32);
 }
 
 hgroup > * {
@@ -60,6 +61,21 @@ aside > section > h2 {
   color: rgb(251, 106, 74);
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+aside > section span.bigger {
+  font-weight: bold;
+  font-size: 36px;
+  margin-top: 5px;
+}
+
+aside > section p {
+  display: flex;
+  align-items:flex-start;
+  flex-direction: column;
+  height: 60px;
+  border-bottom: 3px solid #ddd;
+  padding-bottom: 5px;
 }
 
 .bb-legend-item-The-rest {

@@ -229,16 +229,18 @@ function updateSidebar() {
   var textBlock = document.getElementById('country-text')
   textBlock.innerHTML = ''
   var textPop = document.createElement('p')
-  textPop.innerText =
-    'Population: ' +
+  textPop.innerHTML =
+    'Population: <span class="bigger">' +
     (pop == 0
       ? 'N/A'
       : pop / 1000000 > 1000
       ? pop / 1000000000 + ' billion'
       : pop / 1000000 + ' million')
+  textPop.innerHTML += '</span>'
   var textNrPoor = document.createElement('p')
-  textNrPoor.innerText =
-    'Number of poor: ' + (numPoor === 0 ? 'N/A' : numPoor + ' million')
+  textNrPoor.innerHTML =
+    'People living below 1.25$/day: <span class="bigger">' +
+    (numPoor === 0 ? 'N/A</span>' : numPoor + ' million</span>')
   var textAvgIncome
 
   textBlock.appendChild(textPop)
@@ -250,12 +252,16 @@ function updateSidebar() {
   bb.generate({
     data: {
       columns: [
-        ['Rich', richMoney],
-        ['Poor', poorMoney],
+        ['Income share of richest 10%', richMoney],
+        ['Income share of poorest 10%', poorMoney],
         ['The rest', 100 - richMoney - poorMoney],
       ],
       color: function(color, d) {
-        return { Rich: '#000', Poor: '#f00', 'The rest': '#fff' }[d]
+        return {
+          'Income share of richest 10%': '#000',
+          'Income share of poorest 10%': '#f00',
+          'The rest': '#fff',
+        }[d]
       },
       type: 'pie',
     },

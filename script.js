@@ -24,10 +24,10 @@ var slider = document.getElementById('slider'),
 slider.oninput = function() {
   selectedYearDiv.innerHTML = this.value
   year = this.value
-  console.log(selectedCountry)
   if (selectedCountry) {
     activeCountry(selectedCountry)
     updateSidebar()
+    tip.show()
   } else {
     reFillMap()
     initSidebar()
@@ -117,6 +117,8 @@ var tip = d3
   .attr('class', 'd3-tip')
   .offset([-5, 0])
   .html(function(d) {
+    if (selectedCountry)
+      return selectedCountry + ': ' + data.get(selectedCountry)[year]
     var val = data.get(d.properties.name) && data.get(d.properties.name)[year]
     if (val) {
       return d.properties.name + ': ' + val
@@ -138,9 +140,14 @@ function drawMap() {
     // draw each country
     .attr('d', d3.geoPath().projection(projection))
     .attr('class', 'country')
-    .on('mouseover', tip.show)
-    .on('mouseout', tip.hide)
+    .on('mouseover', d => {
+      if (!selectedCountry) tip.show(d)
+    })
+    .on('mouseout', d => {
+      if (!selectedCountry) tip.hide(d)
+    })
     .on('click', clickedCountry)
+
     // set the color of each country
     .attr('fill', function(d) {
       d.total =
@@ -201,9 +208,11 @@ function clickedCountry(d) {
 
   if (copy == d.properties.name) {
     reFillMap()
+    tip.hide(d)
     selectedCountry = null
     initSidebar()
   } else {
+    tip.show(d)
     activeCountry(d.properties.name)
     updateSidebar()
   }
@@ -216,7 +225,6 @@ function updateSidebar() {
     0
   var numPoor =
     (nrPoor.get(selectedCountry) && nrPoor.get(selectedCountry)[year]) || 0
-  console.log(nrPoor.get(selectedCountry))
 
   var textBlock = document.getElementById('country-text')
   textBlock.innerHTML = ''

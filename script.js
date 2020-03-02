@@ -258,17 +258,16 @@ function updateSidebar() {
         return { Rich: '#000', Poor: '#f00', 'The rest': '#fff' }[d]
       },
       type: 'pie',
-      onclick: function(d, i) {
-        console.log('onclick', d, i)
-      },
-      onover: function(d, i) {
-        console.log('onover', d, i)
-      },
-      onout: function(d, i) {
-        console.log('onout', d, i)
-      },
     },
     bindto: '#pie-chart',
+    interaction: {
+      enabled: false,
+    },
+    legend: {
+      item: {
+        onclick: () => {},
+      },
+    },
   })
 }
 

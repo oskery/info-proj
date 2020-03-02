@@ -249,32 +249,37 @@ function updateSidebar() {
   var richMoney = rich.get(selectedCountry)[year] || 0
   var poorMoney = poor.get(selectedCountry)[year] || 0
 
-  bb.generate({
-    data: {
-      columns: [
-        ['Income share of richest 10%', richMoney],
-        ['Income share of poorest 10%', poorMoney],
-        ['The rest', 100 - richMoney - poorMoney],
-      ],
-      color: function(color, d) {
-        return {
-          'Income share of richest 10%': '#000',
-          'Income share of poorest 10%': '#f00',
-          'The rest': '#fff',
-        }[d]
+  if (richMoney === 0 || poorMoney === 0) {
+    var pie = document.getElementById('pie-chart')
+    pie.innerHTML = ''
+  } else {
+    bb.generate({
+      data: {
+        columns: [
+          ['Income share of richest 10%', richMoney],
+          ['Income share of poorest 10%', poorMoney],
+          ['The rest', 100 - richMoney - poorMoney],
+        ],
+        color: function(color, d) {
+          return {
+            'Income share of richest 10%': '#000',
+            'Income share of poorest 10%': '#f00',
+            'The rest': '#fff',
+          }[d]
+        },
+        type: 'pie',
       },
-      type: 'pie',
-    },
-    bindto: '#pie-chart',
-    interaction: {
-      enabled: false,
-    },
-    legend: {
-      item: {
-        onclick: () => {},
+      bindto: '#pie-chart',
+      interaction: {
+        enabled: false,
       },
-    },
-  })
+      legend: {
+        item: {
+          onclick: () => {},
+        },
+      },
+    })
+  }
 }
 
 function initSidebar() {

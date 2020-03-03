@@ -185,9 +185,7 @@ function reFillMap() {
   })
   getAvg()
   var button1 = document.getElementsByTagName('button')[0]
-  var button2 = document.getElementsByTagName('button')[1]
   button1.style.visibility = 'hidden'
-  button2.style.visibility = 'hidden'
 }
 
 // Change color on active country
@@ -210,7 +208,6 @@ function clickedCountry(d) {
   var element = document.getElementById('country-title')
   element.innerText = selectedCountry
   var button1 = document.getElementsByTagName('button')[0]
-  var button2 = document.getElementsByTagName('button')[1]
 
   if (copy == d.properties.name) {
     reFillMap()
@@ -222,7 +219,6 @@ function clickedCountry(d) {
     activeCountry(d.properties.name)
     updateSidebar()
     button1.style.visibility = 'visible'
-    button2.style.visibility = 'visible'
   }
 }
 

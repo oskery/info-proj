@@ -6,7 +6,7 @@ var minVal = 24 // Not used atm
 var maxVal = 64 // Not used atm
 var title = 'How it works'
 var startPageText =
-  'This visualization present how income inequality has changed over time, and how the levels of inequality in different countries can vary significantly. \n\n The inequality is measured through the Gini coefficient (shown). The value ranges from 0 to 100, where 0 equals total equality and 100 total inequality.'
+  'This visualization present how income inequality has changed over time, and how the levels of inequality in different countries can vary significantly. \n\n The inequality is measured through the Gini coefficient. The value ranges from 0 to 100, where 0 equals total equality and 100 total inequality.'
 
 // Creates yearspan and retrieves active year
 var yearSpan = [...Array(maxYear - minYear).keys()]

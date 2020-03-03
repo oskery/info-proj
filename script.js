@@ -169,7 +169,7 @@ for (var i = 0; i < legendValues.length; i++) {
   element.style.background = colorScale(legendValues[i])
   var text
   if (i === 0) text = '<' + legendValues[i + 1]
-  else if (i === legendValues.length - 1) text = '>' + legendValues[i - 1]
+  else if (i === legendValues.length - 1) text = '>' + legendValues[i]
   else text = legendValues[i] + '-' + legendValues[i + 1]
   element.innerText = text
   legend.appendChild(element)

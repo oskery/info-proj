@@ -223,6 +223,8 @@ function clickedCountry(d) {
 }
 
 function updateSidebar() {
+  var maintext = document.getElementsByTagName('section')[0]
+  maintext.style.display = 'none'
   var pop =
     (population.get(selectedCountry) &&
       population.get(selectedCountry)[year]) ||
@@ -287,6 +289,8 @@ function updateSidebar() {
 }
 
 function initSidebar() {
+  var maintext = document.getElementsByTagName('section')[0]
+  maintext.style.display = 'block'
   var cTitle = document.getElementById('info-title')
   cTitle.innerText = title
   var parent = document.getElementById('info-text')

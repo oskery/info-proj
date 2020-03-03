@@ -295,6 +295,8 @@ function initSidebar() {
   cTitle.innerText = title
   var parent = document.getElementById('info-text')
   parent.innerText = startPageText
+  parent.innerHTML +=
+    '<br /><br /><i>"If we are concerned about equality of opportunity tomorrow, we need to be concerned about inequality of outcome today"</i><span style="float:right; margin-top: 10px">- Anthony B. Atkinson</span>'
 
   cTitle = document.getElementById('country-title')
   cTitle.innerText = 'Country details'

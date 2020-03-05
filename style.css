@@ -176,6 +176,10 @@ main .map {
   opacity: 1;
 }
 
+#slider-wrapper:hover small {
+  opacity: 1;
+}
+
 
 #slider::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -194,6 +198,7 @@ main .map {
 }
 
 #slider-wrapper small {
+  opacity: 0;
   position: absolute;
   z-index: 100;
   bottom: -27px;
@@ -202,6 +207,7 @@ main .map {
   border: 1px solid rgba(0,0,0,0.5);
   padding: 2px;
   border-radius: 2px;
+  transition:opacity 2000ms;
 }
 #slider-wrapper small:first-child {
   left: -15px;

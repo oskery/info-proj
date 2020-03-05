@@ -160,6 +160,16 @@ function drawMap() {
   initSidebar()
 }
 
+// Zoom
+var zoom = d3
+  .zoom()
+  .scaleExtent([1, 8])
+  .on('zoom', function() {
+    svg.selectAll('path').attr('transform', d3.event.transform)
+  })
+
+svg.call(zoom)
+
 // Draw legend
 var legend = document.getElementById('legend')
 var cols = d3.schemeReds[legend.length]

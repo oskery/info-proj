@@ -238,4 +238,5 @@ main button {
   bottom: 33%;
   font-size: 1.6em;
   top: auto;
+  visibility: visible;
 }

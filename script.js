@@ -164,7 +164,8 @@ function drawMap() {
 var zoom = d3
   .zoom()
   .scaleExtent([1, 8])
-  .on('zoom', function() {
+  .on('zoom', function () {
+    var element = document.getElementById('zoom-button')
     svg.selectAll('path').attr('transform', d3.event.transform)
   })
 
@@ -325,11 +326,16 @@ function reset() {
 }
 
 function resetZoom () {
-  zoom.transform(svg, d3.zoomIdentity)
-  svg
-    .transition()
-    .duration(1750)
-    .call(zoom.transform, d3.zoomIdentity)
+  zoom.transform(svg.transition().duration(450), d3.zoomIdentity)
+  var element = document.getElementById('zoom-button')
+}
+
+function zoomIn () {
+	zoom.scaleBy(svg.transition().duration(450), 2.0);
+}
+
+function zoomOut() {
+	zoom.scaleBy(svg.transition().duration(450), 1/2.0);
 }
 
 function clickedMap() {

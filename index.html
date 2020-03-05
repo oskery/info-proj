@@ -64,9 +64,18 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="260 -10 540 370" onclick="clickedMap()"></svg>
 
     </div>
-    <button onclick="resetZoom()">Reset zoom</button>
+    <div id="zoom-panel">
+      <button id="zoom-out" onclick="zoomOut()">
+        <i class="material-icons">zoom_out</i>
+      </button>
+      <button id="zoom-in" onclick="zoomIn()">
+        <i class="material-icons">zoom_in</i>
+      </button>
 
-    <p>Source: <a href="https://data.worldbank.org/indicator/SI.POV.GINI">The World Bank</a>, retrieved Feb. 2020.</p>
+      <button id="zoom-reset" onclick="resetZoom()">
+        Reset to default
+      </button>
+    </div>
     <div id="legend"></div>
   </main>
 

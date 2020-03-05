@@ -138,19 +138,6 @@ main .map {
   width: 60vw;
 }
 
-.map button {
-  cursor: pointer;
-  background-color: black;
-  opacity: 0.7;
-  padding: 10px;
-  font-size: 20px;
-  color: white;
-  border: 0;
-  position: absolute;
-  bottom: 30%;
-  right: 0;
-}
-
 .map button:hover {
   opacity: 0.9;
 }
@@ -212,8 +199,7 @@ main .map {
 
 button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+
   cursor: pointer;
   background-image: linear-gradient(to top left, rgb(32, 32, 32), rgb(83, 83, 83));
   color: white;
@@ -229,6 +215,11 @@ button {
   visibility: hidden;
 }
 
+aside button {
+  top: 10px;
+  right: 10px;
+}
+
 button:hover {
   opacity:1;
 
@@ -236,7 +227,6 @@ button:hover {
 
 main button {
   bottom: 33%;
-  font-size: 1.6em;
-  top: auto;
+  right: -10%;
   visibility: visible;
 }

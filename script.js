@@ -324,6 +324,14 @@ function reset() {
   reFillMap()
 }
 
+function resetZoom () {
+  zoom.transform(svg, d3.zoomIdentity)
+  svg
+    .transition()
+    .duration(1750)
+    .call(zoom.transform, d3.zoomIdentity)
+}
+
 function clickedMap() {
   if (!selectedCountry) clicks = 0
   else clicks++

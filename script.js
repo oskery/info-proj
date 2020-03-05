@@ -14,7 +14,8 @@ var yearSpan = [...Array(maxYear - minYear).keys()]
   .filter(x => x % 10 === 0)
 var year = document.getElementById('selected-year').innerHTML
 var yearAvg = Array(maxYear - minYear)
-var selectedCountry
+var selectedCountry = null
+var clicks = 0
 
 // Retrieve slider div
 var slider = document.getElementById('slider'),
@@ -311,4 +312,15 @@ function reset() {
   selectedCountry = null
   initSidebar()
   reFillMap()
+}
+
+function clickedMap() {
+  if (!selectedCountry) clicks = 0
+  else clicks++
+  if (clicks > 1 && selectedCountry) {
+    console.log('reset')
+    selectedCountry = null
+    clicks = 0
+    reset()
+  }
 }

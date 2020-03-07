@@ -87,9 +87,12 @@ main {
 }
 
 #zoom-panel {
+  position: absolute;
   display: flex;
   width: 200px;
   margin: 0 auto;
+  right: -225px;
+  bottom: 60px;
   flex-wrap: wrap;
 }
 

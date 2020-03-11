@@ -8,12 +8,16 @@
   <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
   <script src="lib/billboard.min.js"></script>
   <script src="lib/d3-tip.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
+
+
 
   <script src="script.js" defer></script>
 
   <link rel="stylesheet" type="text/css" href="lib/billboard.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <title>Inequality per country</title>
 </head>
 
@@ -30,8 +34,25 @@
     </header>
 
     <section>
-      <h2 id="info-title"></h2>
-      <div id="info-text"></div>
+      <h2 id="info-title">How it works</h2>
+      <div id="info-text">
+        This map shows how income inequality differs between countries, measured by <i>Gini coefficient</i>. The
+        darker the red, the more unequal is the country.
+        <br />
+        <ul>
+          <li>Use the slider on top to change year</li>
+          <li>Interact with the map to find more information</li>
+        </ul>
+
+        <details>
+          <summary>What is the Gini coefficient?</summary>
+          <small> The Gini coefficient is the most commonly used measurment
+            of inequality. Here, the value ranges from 0, where everybody is equal, to 100, where all the income is
+            earned
+            by a single person. <a href='https://en.wikipedia.org/wiki/Gini_coefficient'>Read more</a>
+          </small>
+        </details>
+      </div>
 
     </section>
 
@@ -41,9 +62,9 @@
       <div id="country-text"></div>
 
       <div id="pie-chart"></div>
+      <div id="news">
+      </div>
     </section>
-
-
   </aside>
 
 
@@ -64,20 +85,23 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="260 -10 540 370" onclick="clickedMap()"></svg>
 
     </div>
-    <div id="zoom-panel">
-      <button id="zoom-out" onclick="zoomOut()">
-        <i class="material-icons">zoom_out</i>
-      </button>
-      <button id="zoom-in" onclick="zoomIn()">
-        <i class="material-icons">zoom_in</i>
-      </button>
-
-      <button id="zoom-reset" onclick="resetZoom()">
-        Reset to default
-      </button>
-    </div>
     <div id="legend"></div>
   </main>
+
+  <section id="zoom-panel">
+    <h3>Map controls</h3>
+    <button id="zoom-out" onclick="zoomOut()">
+      <i class="material-icons">zoom_out</i>
+    </button>
+    <button id="zoom-in" onclick="zoomIn()">
+      <i class="material-icons">zoom_in</i>
+    </button>
+
+    <button id="zoom-reset" onclick="resetZoom()">
+      Reset zoom
+    </button>
+    <small>If you have a scrollwheel on your mouse you can use that to zoom.</small>
+  </section>
 
 </body>
 

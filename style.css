@@ -5,13 +5,10 @@
 body {
   user-select:none;
   display: flex;
-  flex-direction: row;
   font-size: 20px;
   margin: 0;
   height: 100vh;
   overflow: hidden;
-  text-align: center;
-  padding-top: 20px;
   color: rgb(32, 32, 32);
   font-family: Quattrocento;
 }
@@ -38,6 +35,16 @@ button:hover {
 
 }
 
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: rgb(194, 58, 63);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 h1 {
   font-size: 108px;
   margin: 0;
@@ -45,7 +52,7 @@ h1 {
 }
 
 h2 {
-  font-size: 40px;
+  font-size: 38px;
   margin: 0;
   white-space: nowrap;
 }
@@ -57,6 +64,26 @@ h4 {
 h5 {
   font-size: 1.4em;
   margin-bottom: -7px;
+}
+
+details {
+  margin-top: 30px;
+}
+
+summary {
+  color: rgb(194, 58, 63);
+  font-size: 1.1em;
+  margin: 10px 0 9px;
+}
+
+summary:hover {
+  font-weight: bold;
+  cursor: pointer;
+
+}
+details small {
+  display: block;
+  margin: 20px;
 }
 
 /* MAIN CONTENT */
@@ -84,41 +111,16 @@ header {
 
 main {
   position: relative;
-}
-
-#zoom-panel {
-  position: absolute;
   display: flex;
-  width: 200px;
-  margin: 0 auto;
-  right: -225px;
-  bottom: 60px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex: 1;
 }
 
-#zoom-panel button {
-  margin: 5px 5px;
-}
-
-#zoom-panel button i {
-  font-size: 40px;
-  margin: 5px 0;
-}
-
-#zoom-panel button:not(#zoom-reset) {
-  width: calc(50% - 10px);
-}
-
-#zoom-panel #zoom-reset {
-  font-size: 20px;
-  padding: 12px 0 9px;
-  width: 100%;
-}
 
 
 main .map {
+  flex: 1;
   position: relative;
-  width: 60vw;
   overflow: hidden;
 }
 .country {
@@ -140,6 +142,10 @@ main .map {
 }
 
 #legend {
+  background: white;
+  height: 28px;
+  border: 3px solid white;
+  text-align: center;
   font-family: 'Open-sans', arial;
   display: flex;
   position: absolute;
@@ -240,8 +246,8 @@ aside {
   justify-self: flex-start;
   padding: 20px;
   word-wrap: break-word;
-  margin-right: 20px;
-  max-width: 420px;
+  margin-right:5px;
+  max-width: 380px;
 }
 
 aside header {
@@ -249,28 +255,67 @@ aside header {
   background: white;
 }
 
-aside > section {
+section {
   position: relative;
   margin: 30px 0;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.13);
   padding: 30px;
-  border-radius: 20px;
+  border-radius: 5px;
 }
 
-aside > section > h2 {
+#info-text, #country-text{
+  line-height: 140%;
+}
+
+#info-text small {
+  line-height: 130%;
+}
+
+section > h2 {
   margin-bottom: 20px;
   color: rgb(251, 106, 74);
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-aside > section span.bigger {
+section span.bigger {
   font-weight: bold;
-  font-size: 36px;
+  font-size: 26px;
   margin-top: 5px;
 }
 
-aside > section p {
+.fa-question-circle {
+  position: relative;
+  display: inline-block;
+  color: rgba(43, 43, 43, 0.8);
+}
+.tooltip {
+  align-self: flex-end;
+  position: relative;
+  display: inline-block;
+  margin-top: -30px;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgba(43, 43, 43, 0.8);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  margin-top: -5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+#country-text li {
   display: flex;
   align-items:flex-start;
   flex-direction: column;
@@ -292,4 +337,91 @@ aside button {
 
 .bb-legend-item-The-rest {
   visibility: hidden !important;
+}
+
+
+
+#zoom-panel {
+  display: flex;
+  width: 200px;
+  margin: 60vh 20px 0 10px;
+  flex-wrap: wrap;
+  background: white;
+align-self: flex-start;
+padding: 10px;
+}
+
+#zoom-panel h3 {
+  width: 100%;
+  text-align: left;
+  margin: 10px 5px;
+}
+
+#zoom-panel button {
+  background: white;
+  border: 1px solid red;
+  margin: 5px 5px;
+}
+
+#zoom-panel small {
+  margin: 10px 5px;
+}
+
+#zoom-panel button i {
+  font-size: 40px;
+  margin: 5px 0;
+}
+
+#zoom-panel button:not(#zoom-reset) {
+  width: calc(50% - 10px);
+}
+
+#zoom-panel #zoom-reset {
+  font-size: 20px;
+  padding: 12px 0 9px;
+  width: 100%;
+}
+
+#news {
+  display: none;
+  position: relative;
+  flex-direction: column;
+  margin-top: 30px;
+  background: rgba(0,0,0,0.04);
+  border: 1px dashed black;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+#news .tooltip {
+  position: absolute;
+  right: 10px;
+  margin: 0;
+  top: 10px;
+
+}
+
+#news .tooltiptext {
+  margin-left: 23px;
+  text-align: left;
+
+}
+
+#news > a {
+  color: black;
+}
+
+
+#news h3 {
+  margin: 0;
+}
+
+#news .fa-spinner {
+  margin-right:5px;
+}
+
+#news small {
+  display:block;
+  margin-left: auto;
+  margin-top: 8px;
 }

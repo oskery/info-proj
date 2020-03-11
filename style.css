@@ -289,6 +289,7 @@ section span.bigger {
   display: inline-block;
   color: rgba(43, 43, 43, 0.8);
 }
+
 .tooltip {
   align-self: flex-end;
   position: relative;
@@ -424,4 +425,8 @@ padding: 10px;
   display:block;
   margin-left: auto;
   margin-top: 8px;
+}
+
+.pie-wrapper {
+  padding-top: 20px;
 }

@@ -281,9 +281,9 @@ function updateSidebar() {
   var richMoney = rich.get(selectedCountry) && rich.get(selectedCountry)[year] || 0
   var poorMoney = poor.get(selectedCountry) && poor.get(selectedCountry)[year] || 0
 
+  var pie = document.getElementById('pie-chart')
   if (richMoney === 0 || poorMoney === 0) {
-    var pie = document.getElementById('pie-chart')
-    pie.innerHTML = ''
+    pie.innerHTML = '<i><small>No data available for pie chart. Please try another year!</small></i>'
   } else {
     bb.generate({
       data: {
@@ -296,7 +296,7 @@ function updateSidebar() {
           return {
             'Income share of richest 10%': '#000',
             'Income share of poorest 10%': '#f00',
-            'The rest': '#fff',
+            'The rest': '#ddd',
           }[d]
         },
         type: 'pie',

@@ -126,11 +126,11 @@ var tip = d3
   .html(function(d) {
     if (selectedCountry && data.get(selectedCountry))
       return selectedCountry + ': ' + data.get(selectedCountry)[year]
-    var val = data.get(selectedCountry) && data.get(selectedCountry)[year]
+    var val = data.get(d.properties.name) && data.get(d.properties.name)[year]
     if (val) {
-      returnselectedCountry + ': ' + val
+      return d.properties.name + ': ' + val
     } else {
-      return selectedCountry + ': No data.'
+      return d.properties.name + ': No data.'
     }
   })
 
@@ -283,7 +283,7 @@ function updateSidebar() {
 
   var pie = document.getElementById('pie-chart')
   if (richMoney === 0 || poorMoney === 0) {
-    pie.innerHTML = '<i><small>No data available for pie chart. Please try another year!</small></i>'
+    pie.innerHTML = '<i><small>No data available for pie chart. Please try another year or country!</small></i>'
   } else {
     bb.generate({
       data: {

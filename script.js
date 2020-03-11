@@ -124,13 +124,13 @@ var tip = d3
   .attr('class', 'd3-tip')
   .offset([-5, 0])
   .html(function(d) {
-    if (selectedCountry)
+    if (selectedCountry && data.get(selectedCountry))
       return selectedCountry + ': ' + data.get(selectedCountry)[year]
-    var val = data.get(d.properties.name) && data.get(d.properties.name)[year]
+    var val = data.get(selectedCountry) && data.get(selectedCountry)[year]
     if (val) {
-      return d.properties.name + ': ' + val
+      returnselectedCountry + ': ' + val
     } else {
-      return d.properties.name + ': No data.'
+      return selectedCountry + ': No data.'
     }
   })
 
@@ -278,8 +278,8 @@ function updateSidebar() {
   textBlock.appendChild(textPop)
   textBlock.appendChild(textNrPoor)
 
-  var richMoney = rich.get(selectedCountry)[year] || 0
-  var poorMoney = poor.get(selectedCountry)[year] || 0
+  var richMoney = rich.get(selectedCountry) && rich.get(selectedCountry)[year] || 0
+  var poorMoney = poor.get(selectedCountry) && poor.get(selectedCountry)[year] || 0
 
   if (richMoney === 0 || poorMoney === 0) {
     var pie = document.getElementById('pie-chart')
@@ -361,7 +361,7 @@ function clickedMap() {
 
 
 function fetchNews () {
-  if (new Date() - lastFetch > 1000) {
+  if (new Date() - lastFetch > 2000) {
     lastFetch = new Date()
     var newsbox = document.getElementById('news')
     newsbox.innerHTML = "<span><i class='fas fa-spinner fa-pulse'></i> Retrieving news...</span>"
@@ -382,6 +382,6 @@ function fetchNews () {
         }
       }).catch(e => newsbox.innerHTML =  `No news related to ${selectedCountry} from ${year} was found..`
       );
+      newsbox.innerHTML += `<div class='tooltip'><div class='tooltiptext'>News from ${year} related to ${selectedCountry}. Source: <a href="https://developer.nytimes.com/apis">New York Times</a></div><i class='far fa-newspaper'></i></div>`
   }
-  newsbox.innerHTML += `<div class='tooltip'><div class='tooltiptext'>News from ${year} related to ${selectedCountry}. Source: <a href="https://developer.nytimes.com/apis">New York Times</a></div><i class='far fa-newspaper'></i></div>`
 }
